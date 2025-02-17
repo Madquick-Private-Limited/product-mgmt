@@ -5,7 +5,7 @@ import { persist } from 'zustand/middleware';
         persist(
         (set) => ({
             user: null,
-            setUser: (userData) => set({ user}),
+            setUser: (userData) => set({ user: userData }),
             logout: () => set({ user: null }),
         }),
         { name: 'user-store' } 

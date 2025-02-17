@@ -1,14 +1,12 @@
-import { Navigate } from 'react-router-dom';
-import { useUserStore } from "../store/store.js"
+// components/ProtectedRoute.jsx
+import { Navigate, Outlet } from "react-router-dom"
 
-const ProtectedRoute = ({ children }) => {
-    const user = useUserStore((state) => state.user);
-    
+const ProtectedRoute = ({ user, children }) => {
     if (!user) {
-        return <Navigate to="/login" />;
+        return <Navigate to="/login" replace />
     }
-    
-    return children;
-};
 
-export default ProtectedRoute;
+    return children ? children : <Outlet />
+}
+
+export default ProtectedRoute
