@@ -17,8 +17,6 @@ import {
     const menuItems = [
         { title: 'Tasks & Projects', icon: CheckSquare, path: '/tasks' },
         { title: 'Feeds', icon: Layout, path: '/feeds' },
-        { title: 'Messenger', icon: MessageSquare, path: '/messenger' },
-        { title: 'Boards', icon: Layout, path: '/boards' },
         { title: 'Notes', icon: FileText, path: '/notes' }
     ];
 
@@ -31,8 +29,8 @@ import {
         <div className="w-64 h-screen bg-gray-900 text-gray-300">
         <div className="p-4">
             <Link to="/" className="flex items-center space-x-2">
-            <img src="/logo.svg" alt="Logo" className="h-8 w-8" />
-            <span className="text-xl font-bold">VRISTO</span>
+            <img src="/project.webp" alt="Logo" className="h-8 w-8" />
+            <span className="text-xl font-bold">TickTrack </span>
             </Link>
         </div>
 

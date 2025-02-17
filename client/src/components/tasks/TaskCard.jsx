@@ -2,45 +2,47 @@ import React from 'react';
 import { Eye, Edit2, Trash2, Calendar } from 'lucide-react';
 import { format } from 'date-fns';
 
-const TaskCard = ({ task }) => {
-    return (
-        <div className="bg-gray-800 rounded-lg p-4 space-y-2">
-        <h3 className="font-medium">{task.title}</h3>
-        <p className="text-sm text-gray-400">{task.description}</p>
-        
-        <div className="flex items-center text-sm text-gray-400">
-            <Calendar className="h-4 w-4 mr-1" />
-            <span>
-            {task.dueDate ? format(new Date(task.dueDate), 'MMM d, yyyy') : 'No due date'}
+const TaskCard = ({ task, onUpdate }) => {
+    const getPriorityColor = (priority) => {
+        switch (priority) {
+            case 'HIGH': return 'bg-red-500';
+            case 'MEDIUM': return 'bg-yellow-500';
+            case 'LOW': return 'bg-green-500';
+            default: return 'bg-gray-500';
+        }
+        };
+    
+        return (
+        <div className="bg-gray-800 rounded-lg p-4 shadow-lg">
+            <div className="flex justify-between items-start mb-2">
+            <h3 className="font-semibold">{task.title}</h3>
+            <span className={`px-2 py-1 rounded-full text-xs ${getPriorityColor(task.priority)}`}>
+                {task.priority}
             </span>
-        </div>
-
-        <div className="flex justify-between items-center pt-2">
-            <div className="flex -space-x-2">
-            {task.assignees?.map((assignee) => (
-                <img
-                key={assignee._id}
-                src={assignee.avatar || '/default-avatar.png'}
-                alt={assignee.username}
-                className="h-6 w-6 rounded-full border-2 border-gray-800"
-                />
-            ))}
             </div>
-
+            
+            <p className="text-gray-400 text-sm mb-4">{task.description}</p>
+            
+            <div className="flex items-center justify-between text-sm text-gray-400">
+            <div className="flex items-center">
+                <Calendar className="w-4 h-4 mr-1" />
+                <span>{task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'No due date'}</span>
+            </div>
+            
             <div className="flex space-x-2">
-            <button className="p-1 hover:bg-gray-700 rounded">
-                <Eye className="h-4 w-4" />
-            </button>
-            <button className="p-1 hover:bg-gray-700 rounded">
-                <Edit2 className="h-4 w-4" />
-            </button>
-            <button className="p-1 hover:bg-gray-700 rounded">
-                <Trash2 className="h-4 w-4" />
-            </button>
+                <button className="p-1 hover:text-white">
+                <Eye className="w-4 h-4" />
+                </button>
+                <button className="p-1 hover:text-white">
+                <Edit2 className="w-4 h-4" />
+                </button>
+                <button className="p-1 hover:text-white">
+                <Trash2 className="w-4 h-4" />
+                </button>
+            </div>
             </div>
         </div>
-        </div>
-    );
-};
-
+        );
+    };
+    
 export default TaskCard;

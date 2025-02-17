@@ -5,7 +5,8 @@ import {
     Moon, 
     Sun, 
     Search,
-    MessageCircle
+    MessageCircle,
+    User2Icon
     } from 'lucide-react';
 
     const Navbar = () => {
@@ -43,7 +44,7 @@ import {
 
             <div className="flex items-center space-x-2">
             <img
-                src={user?.avatar || '/default-avatar.png'}
+                src=<User2Icon />
                 alt="Profile"
                 className="h-8 w-8 rounded-full"
             />
