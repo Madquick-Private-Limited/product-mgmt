@@ -7,16 +7,15 @@ import Dashboard from "./components/dashboard/Dashboard"
 import TaskList from "./components/tasks/TaskList"
 import Layout from "./components/layout/Layout"
 import { useEffect } from "react"
+import ProjectList from "./components/projects/ProjectList"
 
 const App = () => {
   const user = useUserStore((state) => state.user)
   const setUser = useUserStore((state) => state.setUser)
 
-  // Check for existing auth on mount
   useEffect(() => {
     const token = localStorage.getItem("token")
     if (token && !user) {
-      // You might want to verify the token with your backend here
       try {
         const storedUser = JSON.parse(localStorage.getItem("user"))
         if (storedUser) {
@@ -46,6 +45,7 @@ const App = () => {
       <Route element={<ProtectedRoute user={user}><Layout /></ProtectedRoute>}>
         <Route path="/" element={<Dashboard />} />
         <Route path="/tasks" element={<TaskList />} />
+        <Route path="/projects" element={<ProjectList />}/>
       </Route>
 
       {/* Catch all route */}
